@@ -10,5 +10,5 @@ public interface UserDao {
 
     void addCar(Car car);
 
-    List<User> listUsers();
+    List<User> getUsers();
 }

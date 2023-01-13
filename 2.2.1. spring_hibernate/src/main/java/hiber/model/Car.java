@@ -8,8 +8,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int Car_id;
+    private int car_id;
 
 
     @OneToOne(mappedBy = "car")
@@ -45,6 +44,6 @@ public class Car {
     }
 
     public int getCar_id() {
-        return Car_id;
+        return car_id;
     }
 }

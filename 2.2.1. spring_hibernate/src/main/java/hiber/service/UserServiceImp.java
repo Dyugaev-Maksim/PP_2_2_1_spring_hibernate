@@ -1,28 +1,27 @@
 package hiber.service;
 
-import hiber.config.AppConfig;
-
 import hiber.dao.UserDao;
 import hiber.model.Car;
 import hiber.model.User;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.sql.ResultSet;
 import java.util.List;
 
 @Service
+@EnableTransactionManagement
 public class UserServiceImp implements UserService {
+    private final SessionFactory sessionFactory;
+    private final UserDao userDao;
 
-    @Autowired
-    private UserDao userDao;
+    public UserServiceImp(SessionFactory sessionFactory, UserDao userDao) {
+        this.sessionFactory = sessionFactory;
+        this.userDao = userDao;
+    }
 
     @Transactional
     @Override
@@ -36,25 +35,17 @@ public class UserServiceImp implements UserService {
         userDao.addCar(car);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
-    public List<User> listUsers() {
-        return userDao.listUsers();
+    public List<User> getUsers() {
+        return userDao.getUsers();
     }
 
     public User getUserByCar(String model, int series) {
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(AppConfig.class);
-        AppConfig appConfig = context.getBean(AppConfig.class);
-        Session session = appConfig.getSessionFactory().getObject().openSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from User where car.model = :name and car.series= :series");
+        Query query = sessionFactory.openSession().createQuery("from User where car.model = :name and car.series= :series");
         query.setParameter("name", model);
         query.setParameter("series", series);
         User user = (User) query.getResultList().get(0);
-
-        transaction.commit();
-        session.close();
         return user;
     }
 
