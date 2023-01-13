@@ -21,12 +21,11 @@ public class User {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "Car_id", referencedColumnName = "car_id")
+    @JoinColumn(name = "Car_id", referencedColumnName = "carId")
     private Car car;
 
     public User() {
     }
-
 
     public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -42,7 +41,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", car=" + car.getCar_id();
+                ", car=" + car.getCarId();
     }
 
     public void setCar(Car car) {
@@ -92,7 +91,6 @@ public class User {
         User user = (User) o;
         return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(car, user.car);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, email, car);
