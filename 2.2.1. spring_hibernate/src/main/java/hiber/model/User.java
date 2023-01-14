@@ -28,15 +28,6 @@ public class User {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User: " +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", car=" + car.getCarId();
-    }
 
     public void setCar(Car car) {
         this.car = car;
@@ -76,6 +67,16 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User: " +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", car=" + car.getCarId();
     }
 
     @Override

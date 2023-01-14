@@ -10,4 +10,5 @@ public interface UserService {
 
     List<User> getUsers();
 
+    public User getUserByCar(String model, int series);
 }
