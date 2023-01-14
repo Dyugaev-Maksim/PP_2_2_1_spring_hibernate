@@ -8,8 +8,8 @@ import java.util.List;
 public interface CarService {
     void addCar(Car car);
 
-    List<User> getCar();
+    List<Car> getCar();
 
-    User getUserByCar(String model, int series);
+
 }
 
