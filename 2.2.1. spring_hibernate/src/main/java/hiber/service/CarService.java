@@ -6,11 +6,10 @@ import hiber.model.User;
 import java.util.List;
 
 public interface CarService {
-
     void addCar(Car car);
 
     List<User> getCar();
 
-    public User getUserByCar(String model, int series);
+    User getUserByCar(String model, int series);
 }
 

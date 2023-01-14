@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-
     private final SessionFactory sessionFactory;
 
     public UserDaoImp(SessionFactory sessionFactory) {
@@ -27,9 +26,8 @@ public class UserDaoImp implements UserDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getUsers() {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        TypedQuery<User> query = sessionFactory
+                .getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
-
-
 }

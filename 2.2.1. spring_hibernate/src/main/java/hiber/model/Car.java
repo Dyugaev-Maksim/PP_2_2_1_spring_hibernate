@@ -20,8 +20,8 @@ public class Car {
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
-
     }
+
     public String getModel() {
         return model;
     }
@@ -47,7 +47,9 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return carId == car.carId && series == car.series && Objects.equals(user, car.user) && Objects.equals(model, car.model);
+        return carId == car.carId && series == car.series
+                && Objects.equals(user, car.user)
+                && Objects.equals(model, car.model);
     }
 
     @Override
