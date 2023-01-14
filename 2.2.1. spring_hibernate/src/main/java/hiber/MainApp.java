@@ -43,7 +43,7 @@ public class MainApp {
             System.out.println("Email = " + user.getEmail());
 
         }
-        System.out.println(carService.getUserByCar("VAZ", 2115));
+        System.out.println(userService.getUserByCar("VAZ", 2115));
         context.close();
     }
 }

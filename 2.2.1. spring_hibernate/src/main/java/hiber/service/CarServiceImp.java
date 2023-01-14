@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class CarServiceImp implements CarService {
     private final SessionFactory sessionFactory;
     private final CarDao carDao;
@@ -21,19 +21,17 @@ public class CarServiceImp implements CarService {
         this.carDao = carDao;
     }
 
-
+    @Transactional
     @Override
     public void addCar(Car car) {
         carDao.addCar(car);
     }
 
-    @Override
-    public List<User> getCar() {
-        return null;
-    }
 
     @Override
-    public User getUserByCar(String model, int series) {
-        return carDao.getUserByCar(model, series);
+    public List<Car> getCar() {
+        return carDao.getCar();
     }
+
+
 }
